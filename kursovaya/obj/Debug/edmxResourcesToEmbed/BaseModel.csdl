@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="strah_compModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fio_cl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="inn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="snills" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="passport" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="dogovors" Relationship="Self.FK_dogovors_clients" FromRole="clients" ToRole="dogovors" />
+  </EntityType>
+  <EntityType Name="dogovors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_start" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_end" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="str_proc" Type="Double" />
+    <Property Name="str_pay" Type="Double" Nullable="false" />
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <Property Name="id_type_of" Type="Int32" Nullable="false" />
+    <Property Name="id_sotrud" Type="Int32" Nullable="false" />
+    <Property Name="id_fillials" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="clients" Relationship="Self.FK_dogovors_clients" FromRole="dogovors" ToRole="clients" />
+    <NavigationProperty Name="fillials" Relationship="Self.FK_dogovors_fillials" FromRole="dogovors" ToRole="fillials" />
+    <NavigationProperty Name="sotrud" Relationship="Self.FK_dogovors_sotrud" FromRole="dogovors" ToRole="sotrud" />
+    <NavigationProperty Name="type_of_str" Relationship="Self.FK_dogovors_type_of_str" FromRole="dogovors" ToRole="type_of_str" />
+  </EntityType>
+  <EntityType Name="fillials">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name_fill" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_number" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="dogovors" Relationship="Self.FK_dogovors_fillials" FromRole="fillials" ToRole="dogovors" />
+    <NavigationProperty Name="sotrud" Relationship="Self.FK_sotrud_fillials" FromRole="fillials" ToRole="sotrud" />
+  </EntityType>
+  <EntityType Name="sotrud">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fio_sotrud" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pol" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dolzhnost" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_fillial" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dogovors" Relationship="Self.FK_dogovors_sotrud" FromRole="sotrud" ToRole="dogovors" />
+    <NavigationProperty Name="fillials" Relationship="Self.FK_sotrud_fillials" FromRole="sotrud" ToRole="fillials" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="type_of_str">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name_type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="dogovors" Relationship="Self.FK_dogovors_type_of_str" FromRole="type_of_str" ToRole="dogovors" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dostup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dogovors_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="1" />
+    <End Role="dogovors" Type="Self.dogovors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dogovors">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dogovors_fillials">
+    <End Role="fillials" Type="Self.fillials" Multiplicity="1" />
+    <End Role="dogovors" Type="Self.dogovors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fillials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dogovors">
+        <PropertyRef Name="id_fillials" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dogovors_sotrud">
+    <End Role="sotrud" Type="Self.sotrud" Multiplicity="1" />
+    <End Role="dogovors" Type="Self.dogovors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sotrud">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dogovors">
+        <PropertyRef Name="id_sotrud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dogovors_type_of_str">
+    <End Role="type_of_str" Type="Self.type_of_str" Multiplicity="1" />
+    <End Role="dogovors" Type="Self.dogovors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type_of_str">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dogovors">
+        <PropertyRef Name="id_type_of" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sotrud_fillials">
+    <End Role="fillials" Type="Self.fillials" Multiplicity="1" />
+    <End Role="sotrud" Type="Self.sotrud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fillials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sotrud">
+        <PropertyRef Name="id_fillial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="strah_compEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clients" EntityType="Self.clients" />
+    <EntitySet Name="dogovors" EntityType="Self.dogovors" />
+    <EntitySet Name="fillials" EntityType="Self.fillials" />
+    <EntitySet Name="sotrud" EntityType="Self.sotrud" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="type_of_str" EntityType="Self.type_of_str" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK_dogovors_clients" Association="Self.FK_dogovors_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="dogovors" EntitySet="dogovors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dogovors_fillials" Association="Self.FK_dogovors_fillials">
+      <End Role="fillials" EntitySet="fillials" />
+      <End Role="dogovors" EntitySet="dogovors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dogovors_sotrud" Association="Self.FK_dogovors_sotrud">
+      <End Role="sotrud" EntitySet="sotrud" />
+      <End Role="dogovors" EntitySet="dogovors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dogovors_type_of_str" Association="Self.FK_dogovors_type_of_str">
+      <End Role="type_of_str" EntitySet="type_of_str" />
+      <End Role="dogovors" EntitySet="dogovors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sotrud_fillials" Association="Self.FK_sotrud_fillials">
+      <End Role="fillials" EntitySet="fillials" />
+      <End Role="sotrud" EntitySet="sotrud" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

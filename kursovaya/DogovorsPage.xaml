@@ -1,0 +1,69 @@
+﻿<Page x:Class="kursovaya.DogovorsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kursovaya"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DogovorsPage" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="99*"/>
+            <RowDefinition Height="298*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Выберите фамилию клиента: " Width="175" TextAlignment="Right"></TextBlock>
+                <ComboBox Width="225" Name="ComboClientSearch" SelectionChanged="ComboClientSearch_SelectionChanged" DisplayMemberPath="fio_cl"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Выберите фамилию сотрудника: " Width="175" TextAlignment="Right"></TextBlock>
+                <ComboBox Width="225" Name="ComboSotrudSearch" SelectionChanged="ComboSotrudSearch_SelectionChanged" DisplayMemberPath="fio_sotrud"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Выберите тип: " Width="175" TextAlignment="Right"></TextBlock>
+                <ComboBox Width="225" Name="ComboTypeSearch" SelectionChanged="ComboTypeSearch_SelectionChanged" DisplayMemberPath="name_type"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Выберите филиал: " Width="175" TextAlignment="Right"></TextBlock>
+                <ComboBox Width="225" Name="ComboFilialSearch" SelectionChanged="ComboFilialSearch_SelectionChanged" DisplayMemberPath="name_fill"></ComboBox>
+            </StackPanel>
+        </WrapPanel>
+
+        <DataGrid x:Name="DGridDogovors" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата начала" Binding="{Binding date_start}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding date_end}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Страховой процент" Binding="{Binding str_proc}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Страховая выплата" Binding="{Binding str_pay}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО клиента" Binding="{Binding clients.fio_cl}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип страхования" Binding="{Binding type_of_str.name_type}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО сотрудника" Binding="{Binding sotrud.fio_sotrud}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Филиал" Binding="{Binding fillials.name_fill}" Width="150"></DataGridTextColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Name="btnEdit" BorderThickness="1" Foreground="#53377A" Click="btnEdit_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Print" Name="btnPeint" BorderThickness="1" Foreground="#53377A" Click="btnPrint_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Добавить договор" Grid.Row="2" BorderThickness="1" Background="#53377A" HorizontalAlignment="Left" Name="btnAdd" Click="btnAdd_Click" Margin="5,11,0,12" Width="150"></Button>
+        <Button Content="Добавить клиента" Grid.Row="2" BorderThickness="1" Background="#53377A" HorizontalAlignment="Left" Name="btnAddClient" Click="btnAddClient_Click" Margin="184,11,0,12" Width="150"></Button>
+        <Button Content="Удалить" Grid.Row="2" BorderThickness="1" Background="#53377A" HorizontalAlignment="Right" Name="btnDelete" Click="btnDelete_Click" Margin="0,11,5,12"></Button>
+    </Grid>
+</Page>

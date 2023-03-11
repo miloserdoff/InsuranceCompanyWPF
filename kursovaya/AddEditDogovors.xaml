@@ -1,0 +1,46 @@
+﻿<Page x:Class="kursovaya.AddEditDogovors"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kursovaya"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditDogovors">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Дата начала" Grid.Row="0"></TextBlock>
+        <TextBlock Text="Дата окончания" Grid.Row="1"></TextBlock>
+        <TextBlock Text="Страховой процент" Grid.Row="2"></TextBlock>
+        <TextBlock Text="Страховая выплата" Grid.Row="3"></TextBlock>
+        <TextBlock Text="ФИО клиента" Grid.Row="4"></TextBlock>
+        <TextBlock Text="Тип страхования" Grid.Row="5"></TextBlock>
+        <TextBlock Text="ФИО сотрудника" Grid.Row="6"></TextBlock>
+        <TextBlock Text="Филиал" Grid.Row="7"></TextBlock>
+        <TextBox Text="{Binding date_start}"  MaxLength="255" Grid.Column="1" Grid.Row="0"></TextBox>
+        <TextBox Text="{Binding date_end}"  MaxLength="255" Grid.Column="1" Grid.Row="1"></TextBox>
+        <TextBox Text="{Binding str_proc}"  MaxLength="255" Grid.Column="1" Grid.Row="2"></TextBox>
+        <TextBox Text="{Binding str_pay}" MaxLength="255"  Grid.Column="1" Grid.Row="3"></TextBox>
+        <ComboBox SelectionChanged="ComboClients_SelectionChanged" SelectedValue="{Binding id_client}" Grid.Column="1" Grid.Row="4" x:Name="ComboClients"></ComboBox>
+        <ComboBox SelectionChanged="ComboType_SelectionChanged" SelectedValue ="{Binding id_type_of}" Grid.Column="1" Grid.Row="5" x:Name="ComboType"></ComboBox>
+        <ComboBox SelectionChanged="ComboSotrud_SelectionChanged" SelectedValue="{Binding id_sotrud}" Grid.Column="1" Grid.Row="6" x:Name="ComboSotrud"></ComboBox>
+        <ComboBox SelectionChanged="ComboFilials_SelectionChanged" SelectedValue="{Binding id_fillials}" Grid.Column="1" Grid.Row="7" x:Name="ComboFilials"></ComboBox>
+
+        <Button Content="Сохранить" BorderThickness="1" Background="#53377A" Grid.Row="8" Name="btnSave" Click="btnSave_Click" Grid.Column="1"/>
+    </Grid>
+</Page>

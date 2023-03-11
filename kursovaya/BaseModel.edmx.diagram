@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a54633e2f1364d2fb09b31672f1b9bef" Name="Diagram1">
+        <EntityTypeShape EntityType="strah_compModel.clients" Width="1.5" PointX="7.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="strah_compModel.dogovors" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="strah_compModel.fillials" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="strah_compModel.sotrud" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="strah_compModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="strah_compModel.type_of_str" Width="1.5" PointX="5.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="strah_compModel.users" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="strah_compModel.FK_dogovors_clients" ManuallyRouted="false" />
+        <AssociationConnector Association="strah_compModel.FK_dogovors_fillials" ManuallyRouted="false" />
+        <AssociationConnector Association="strah_compModel.FK_dogovors_sotrud" ManuallyRouted="false" />
+        <AssociationConnector Association="strah_compModel.FK_dogovors_type_of_str" ManuallyRouted="false" />
+        <AssociationConnector Association="strah_compModel.FK_sotrud_fillials" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
